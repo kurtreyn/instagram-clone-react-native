@@ -14,3 +14,7 @@
 ## Part 2
 
 - Build Stories component
+- Start with creating "dummy data" and store in the data folder for profile images and user names
+- Use ScrollView with horizontal parameter to be able to scroll through users
+- Map over dummy data and return a View with index set as key. Inside the View component, render the Image and then a Text component. Use ternary operator to set the max username length before adding elipses to end of username.
+- Add styles to the component
