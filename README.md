@@ -10,3 +10,7 @@
 - Header:
   - Use plus, like, and message icons from icons8.com
   - Create unread badge and add styling
+
+## Part 2
+
+- Build Stories component
