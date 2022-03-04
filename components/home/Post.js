@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
+import { TouchableOpacity } from 'react-native-web';
 // import { Divider } from 'react-native-elements';
 
 const Post = ({ post }) => {
@@ -8,6 +9,7 @@ const Post = ({ post }) => {
       {/* <Divider width={1} orientation='vertical'/> */}
       <PostHeader post={post} />
       <PostImage post={post} />
+      {/* <PostFooter /> */}
     </View>
   );
 };
@@ -19,7 +21,6 @@ const PostHeader = ({ post }) => {
         <Image source={{ uri: post.profile_picture }} style={styles.story} />
         <Text style={styles.textStyle}>{post.user}</Text>
       </View>
-
       <Text style={styles.elipsesText}>...</Text>
     </View>
   );
@@ -27,11 +28,23 @@ const PostHeader = ({ post }) => {
 
 const PostImage = ({ post }) => {
   return (
-    <View style={styles.postImageContainer}>
-      <Image source={post.imageUrl} style={styles.postImage} />
+    <View style={styles.postImageContainer} key={post.id}>
+      <Image source={{ uri: post.imageUrl }} style={styles.postImage} />
     </View>
   );
 };
+
+// const PostFooter = () => {
+//   return (
+//     <Icon imgStyle={styles.footerIcon} imgUrl={postFooterIcons[0].imgUrl} />
+//   );
+// };
+
+// const Icon = ({ imgStyle, imgUrl }) => (
+//   <TouchableOpacity>
+//     <Image style={imgStyle} source={{ uri: imgUrl }} />
+//   </TouchableOpacity>
+// );
 
 export default Post;
 
@@ -70,5 +83,9 @@ const styles = StyleSheet.create({
   postImage: {
     height: '100%',
     resizeMode: 'cover',
+  },
+  footerIcon: {
+    width: 33,
+    height: 33,
   },
 });
