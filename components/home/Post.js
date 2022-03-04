@@ -43,6 +43,8 @@ const Post = ({ post }) => {
       <PostImage post={post} />
       <View style={styles.postFooterContainer}>
         <PostFooter />
+        <Likes post={post} />
+        <Caption post={post} />
       </View>
     </View>
   );
@@ -101,6 +103,23 @@ const Icon = ({ imgStyle, imageUrl }) => (
   </TouchableOpacity>
 );
 
+const Likes = ({ post }) => (
+  <View style={styles.likesContainer}>
+    <Text style={styles.likesStyle}>
+      {post.likes.toLocaleString('en')} likes
+    </Text>
+  </View>
+);
+
+const Caption = ({ post }) => (
+  <View style={{ marginTop: 5 }}>
+    <Text style={styles.camptionText}>
+      <Text style={{ fontWeight: '600' }}>{post.user}</Text>
+      <Text> {post.caption}</Text>
+    </Text>
+  </View>
+);
+
 export default Post;
 
 const styles = StyleSheet.create({
@@ -154,5 +173,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '32%',
     justifyContent: 'space-between',
+  },
+  likesStyle: {
+    color: 'white',
+    fontWeight: '600',
+  },
+  likesContainer: {
+    flexDirection: 'row',
+    marginTop: 4,
+  },
+  camptionText: {
+    color: 'white',
   },
 });

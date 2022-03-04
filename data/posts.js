@@ -1,24 +1,41 @@
+import { Image } from 'react-native';
 import { USERS } from './users';
+import friendsPic from '../assets/friends.jpg';
+import jsPic from '../assets/js.jpg';
+import krcltPic from '../assets/kr-clt.jpg';
+import krPosePic from '../assets/kr-pose.jpg';
+import krSmPic from '../assets/kr-sm.jpg';
+import otPic from '../assets/ot.jpg';
+import scarPic1 from '../assets/sc1.jpg';
+
+const friendsPicUri = Image.resolveAssetSource(friendsPic).uri;
+const jsPicUri = Image.resolveAssetSource(jsPic).uri;
+const krcltPicUri = Image.resolveAssetSource(krcltPic).uri;
+const krPosePicUri = Image.resolveAssetSource(krPosePic).uri;
+const krSmPicUri = Image.resolveAssetSource(krSmPic).uri;
+const otPicUri = Image.resolveAssetSource(otPic).uri;
+const scarPic1Uri = Image.resolveAssetSource(scarPic1).uri;
 
 export const POSTS = [
   {
     id: 1,
-    imageUrl: 'https://i.ibb.co/182bP1y/4k.png',
+    imageUrl: jsPicUri,
     user: USERS[0].user,
     likes: 7870,
-    caption: 'Train Ride to Hogwarts',
+    caption:
+      'Wow! This build looks awesome. So flippin awesome. Did you build this?',
     profile_picture: USERS[0].image,
     comments: [
       {
         user: 'thequazman',
-        comment: 'Wow! This build looks awesome',
+        comment:
+          'Wow! This build looks awesome. So flippin awesome. Did you build this?',
       },
     ],
   },
   {
     id: 2,
-    imageUrl:
-      'https://scontent-lga3-1.xx.fbcdn.net/v/t39.30808-6/269982512_10161453261678098_6139741911884789813_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=0debeb&_nc_ohc=Za97xdPJV68AX9BC27i&_nc_ht=scontent-lga3-1.xx&oh=00_AT_JE9m2ySv-kot7fV9UCn1_kzms2djyYrURKSWqw1pAvQ&oe=6226FE77',
+    imageUrl: otPicUri,
     user: USERS[1].user,
     likes: 7865,
     caption: 'Plane time',
