@@ -1,7 +1,39 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import { TouchableOpacity } from 'react-native-web';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+
 // import { Divider } from 'react-native-elements';
+
+import likeIcon from '../../assets/icons8-heart-50.png';
+import likedIcon from '../../assets/icons8-heart-filled-60.png';
+import commentIcon from '../../assets/icons8-comment-50.png';
+import shareIcon from '../../assets/icons8-email-send-60.png';
+import saveIcon from '../../assets/icons8-bookmark-50.png';
+
+const likedIconUri = Image.resolveAssetSource(likedIcon).uri;
+const likeIconUri = Image.resolveAssetSource(likeIcon).uri;
+const commentIconUri = Image.resolveAssetSource(commentIcon).uri;
+const shareIconUri = Image.resolveAssetSource(shareIcon).uri;
+const saveIconUri = Image.resolveAssetSource(saveIcon).uri;
+
+const postFooterIcons = [
+  {
+    name: 'Like',
+    imageUrl: likeIconUri,
+    likedImageUrl: likedIconUri,
+  },
+  {
+    name: 'Comment',
+    imageUrl: commentIconUri,
+  },
+  {
+    name: 'Share',
+    imageUrl: shareIconUri,
+  },
+  {
+    name: 'Save',
+    imageUrl: saveIconUri,
+  },
+];
 
 const Post = ({ post }) => {
   return (
@@ -9,7 +41,9 @@ const Post = ({ post }) => {
       {/* <Divider width={1} orientation='vertical'/> */}
       <PostHeader post={post} />
       <PostImage post={post} />
-      {/* <PostFooter /> */}
+      <View style={styles.postFooterContainer}>
+        <PostFooter />
+      </View>
     </View>
   );
 };
@@ -29,22 +63,43 @@ const PostHeader = ({ post }) => {
 const PostImage = ({ post }) => {
   return (
     <View style={styles.postImageContainer} key={post.id}>
-      <Image source={{ uri: post.imageUrl }} style={styles.postImage} />
+      <Image source={post.imageUrl} style={styles.postImage} />
     </View>
   );
 };
 
-// const PostFooter = () => {
-//   return (
-//     <Icon imgStyle={styles.footerIcon} imgUrl={postFooterIcons[0].imgUrl} />
-//   );
-// };
+const PostFooter = () => {
+  return (
+    <View style={styles.postFooter}>
+      <View style={styles.leftFooterIconsContainer}>
+        <Icon
+          imgStyle={styles.footerIcon}
+          imageUrl={postFooterIcons[0].imageUrl}
+        />
+        <Icon
+          imgStyle={styles.footerIcon}
+          imageUrl={postFooterIcons[1].imageUrl}
+        />
+        <Icon
+          imgStyle={styles.footerIcon}
+          imageUrl={postFooterIcons[2].imageUrl}
+        />
+      </View>
+      <View style={{ flex: 1, alignItems: 'flex-end' }}>
+        <Icon
+          imgStyle={styles.footerIcon}
+          imageUrl={postFooterIcons[3].imageUrl}
+        />
+      </View>
+    </View>
+  );
+};
 
-// const Icon = ({ imgStyle, imgUrl }) => (
-//   <TouchableOpacity>
-//     <Image style={imgStyle} source={{ uri: imgUrl }} />
-//   </TouchableOpacity>
-// );
+const Icon = ({ imgStyle, imageUrl }) => (
+  <TouchableOpacity>
+    <Image style={imgStyle} source={{ uri: imageUrl }} />
+  </TouchableOpacity>
+);
 
 export default Post;
 
@@ -87,5 +142,17 @@ const styles = StyleSheet.create({
   footerIcon: {
     width: 33,
     height: 33,
+  },
+  postFooterContainer: {
+    marginHorizontal: 15,
+    marginTop: 10,
+  },
+  postFooter: {
+    flexDirection: 'row',
+  },
+  leftFooterIconsContainer: {
+    flexDirection: 'row',
+    width: '32%',
+    justifyContent: 'space-between',
   },
 });
