@@ -42,7 +42,7 @@ export const POSTS = [
     imageUrl: otPicUri,
     user: USERS[1].user,
     likes: 7865,
-    caption: 'Plane time',
+    caption: 'BBQ time',
     profile_picture: USERS[1].image,
     comments: [
       {

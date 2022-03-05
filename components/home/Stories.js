@@ -7,8 +7,8 @@ export default function Stories() {
     <View style={styles.storyContainer}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {USERS.map((story, index) => (
-          <View key={index}>
-            <Image source={story.image} style={styles.story} />
+          <View key={index} style={styles.storyImage}>
+            <Image source={{ uri: story.image }} style={styles.story} />
             <Text style={styles.textStyle}>
               {story.user.length > 11
                 ? story.user.slice(0, 10).toLocaleLowerCase() + '...'
@@ -23,9 +23,13 @@ export default function Stories() {
 
 const styles = StyleSheet.create({
   storyContainer: {
+    flexDirection: 'row',
     marginBottom: 13,
     alignItems: 'center',
     color: 'white',
+  },
+  storyImage: {
+    justifyContent: 'space-evenly',
   },
   story: {
     width: 70,
@@ -36,7 +40,9 @@ const styles = StyleSheet.create({
     borderColor: '#FF8501',
   },
   textStyle: {
+    flexDirection: 'row',
     color: 'white',
     alignItems: 'center',
+    justifyContent: 'center',
   },
 });

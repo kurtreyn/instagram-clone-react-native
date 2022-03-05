@@ -32,4 +32,8 @@ export const USERS = [
     user: 'KurtReyn',
     image: krSmPicUri,
   },
+  {
+    user: 'KurtAcctTwo',
+    image: krcltPicUri,
+  },
 ];
