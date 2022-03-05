@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Divider } from 'react-native-elements';
-import { bottomTabIcons } from '../../data/bottomTabIcons';
 
 const BottomTabs = ({ icons }) => {
   const [activeTab, setActiveTab] = useState('Home');
 
   const Icon = ({ icon }) => (
     <TouchableOpacity onPress={() => setActiveTab(icon.name)}>
-      <Image source={{ uri: icon.inactive }} style={styles.icon} />
+      <Image
+        source={{ uri: activeTab === icon.name ? icon.active : icon.inactive }}
+        style={[
+          styles.icon,
+          icon.name === 'Profile' ? styles.profilePic() : null,
+          activeTab === 'Profile' && icon.name === activeTab
+            ? styles.profilePic(activeTab)
+            : null,
+        ]}
+      />
     </TouchableOpacity>
   );
 
   return (
-    <View>
+    <View style={styles.wrapper}>
       <Divider width={1} orientation="vertical" />
       <View style={styles.container}>
         {icons.map((icon, index) => (
@@ -27,7 +35,13 @@ const BottomTabs = ({ icons }) => {
 export default BottomTabs;
 
 const styles = StyleSheet.create({
-  wrapper: {},
+  wrapper: {
+    position: 'absolute',
+    width: '100%',
+    bottom: '3%',
+    zIndex: 4,
+    backgroundColor: '#000',
+  },
   container: {
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -38,4 +52,9 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
+  profilePic: (activeTab = '') => ({
+    borderRadius: 50,
+    borderWidth: activeTab === 'Profile' ? 2 : 0,
+    borderColor: '#FFF',
+  }),
 });
