@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
-// import { Divider } from 'react-native-elements';
+import { Divider } from 'react-native-elements';
 
 import likeIcon from '../../assets/icons8-heart-50.png';
 import likedIcon from '../../assets/icons8-heart-filled-60.png';
@@ -38,7 +38,7 @@ const postFooterIcons = [
 const Post = ({ post }) => {
   return (
     <View style={{ marginBottom: 30 }}>
-      {/* <Divider width={1} orientation='vertical'/> */}
+      <Divider width={1} orientation="vertical" />
       <PostHeader post={post} />
       <PostImage post={post} />
       <View style={styles.postFooterContainer}>

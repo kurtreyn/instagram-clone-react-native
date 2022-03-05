@@ -14,6 +14,7 @@ const BottomTabs = ({ icons }) => {
 
   return (
     <View>
+      <Divider />
       <View style={styles.container}>
         {icons.map((icon, index) => (
           <Icon key={index} icon={icon} />
