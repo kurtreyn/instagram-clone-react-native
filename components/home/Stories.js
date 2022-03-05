@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   storyImage: {
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
   },
   story: {
     width: 70,

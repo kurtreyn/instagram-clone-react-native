@@ -6,19 +6,35 @@ import { bottomTabIcons } from '../../data/bottomTabIcons';
 const BottomTabs = ({ icons }) => {
   const [activeTab, setActiveTab] = useState('Home');
 
-  const icon = ({ icon }) => (
-    <TouchableOpacity>
-      <Image />
+  const Icon = ({ icon }) => (
+    <TouchableOpacity onPress={() => setActiveTab(icon.name)}>
+      <Image source={{ uri: icon.inactive }} style={styles.icon} />
     </TouchableOpacity>
   );
 
   return (
     <View>
-      <Text>BottomTabs</Text>
+      <View style={styles.container}>
+        {icons.map((icon, index) => (
+          <Icon key={index} icon={icon} />
+        ))}
+      </View>
     </View>
   );
 };
 
 export default BottomTabs;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  wrapper: {},
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    height: 50,
+    paddingTop: 10,
+  },
+  icon: {
+    width: 30,
+    height: 30,
+  },
+});
