@@ -33,3 +33,11 @@ Build Post component
 Build BottomTabs component
 
 - next
+
+## Part 4
+
+Build New Post component
+
+- Create new screen: NewPostScreen in screens folder
+- Create a new subfolder in components folder called: newPost
+- In newPost folder, create a new component called: AddNewPost
