@@ -45,6 +45,8 @@ const Post = ({ post }) => {
         <PostFooter />
         <Likes post={post} />
         <Caption post={post} />
+        <CommentsSection post={post} />
+        <Comments post={post} />
       </View>
     </View>
   );
@@ -65,7 +67,7 @@ const PostHeader = ({ post }) => {
 const PostImage = ({ post }) => {
   return (
     <View style={styles.postImageContainer} key={post.id}>
-      <Image source={post.imageUrl} style={styles.postImage} />
+      <Image source={{ uri: post.imageUrl }} style={styles.postImage} />
     </View>
   );
 };
@@ -118,6 +120,30 @@ const Caption = ({ post }) => (
       <Text> {post.caption}</Text>
     </Text>
   </View>
+);
+
+const CommentsSection = ({ post }) => (
+  <View style={{ marginTop: 5 }}>
+    {!!post.comments.length && (
+      <Text style={{ color: 'grey' }}>
+        View {post.comments.length > 1 ? 'all' : ''} {post.comments.length}{' '}
+        {post.comments.length > 1 ? 'comments' : 'comment'}
+      </Text>
+    )}
+  </View>
+);
+
+const Comments = ({ post }) => (
+  <>
+    {post.comments.map((comment, index) => (
+      <View key={index} style={{ flexDirection: 'row', marginTop: 5 }}>
+        <Text style={{ color: 'white' }}>
+          <Text style={{ fontWeight: '600' }}>{comment.user}</Text>{' '}
+          {comment.comment}
+        </Text>
+      </View>
+    ))}
+  </>
 );
 
 export default Post;

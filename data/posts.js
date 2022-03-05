@@ -19,7 +19,7 @@ const scarPic1Uri = Image.resolveAssetSource(scarPic1).uri;
 export const POSTS = [
   {
     id: 1,
-    imageUrl: jsPicUri,
+    imageUrl: krPosePicUri,
     user: USERS[0].user,
     likes: 7870,
     caption:
@@ -27,9 +27,13 @@ export const POSTS = [
     profile_picture: USERS[0].image,
     comments: [
       {
-        user: 'thequazman',
+        user: 'Skube',
         comment:
           'Wow! This build looks awesome. So flippin awesome. Did you build this?',
+      },
+      {
+        user: 'Skube',
+        comment: 'Double posting',
       },
     ],
   },
