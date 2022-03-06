@@ -34,7 +34,7 @@ Build BottomTabs component
 
 - next
 
-## Part 4
+## Part 5
 
 Build New Post component
 
@@ -42,3 +42,10 @@ Build New Post component
 - Create a new subfolder in components folder called: newPost
 - In newPost folder, create a new component called: AddNewPost and FormicPostUploader
 - Install dependencies: yarn add formik & yarn add yup
+
+## Part 6
+
+Build Navigation
+
+- Create new screen: navigation
+- Install: @react-native-navigation/native, @react-navigation/stack, react-native-gesture-handler, valid-url
