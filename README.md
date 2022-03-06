@@ -40,4 +40,5 @@ Build New Post component
 
 - Create new screen: NewPostScreen in screens folder
 - Create a new subfolder in components folder called: newPost
-- In newPost folder, create a new component called: AddNewPost
+- In newPost folder, create a new component called: AddNewPost and FormicPostUploader
+- Install dependencies: yarn add formik & yarn add yup

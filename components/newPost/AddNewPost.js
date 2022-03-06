@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import FormicPostUploader from './FormicPostUploader';
 
 const AddNewPost = () => {
   return (
     <View style={styles.container}>
       <Header />
-      {/* <PostForm/> */}
+      <FormicPostUploader />
     </View>
   );
 };
@@ -21,6 +22,8 @@ const Header = () => (
       />
     </TouchableOpacity>
     <Text style={styles.headerText}>NEW POST</Text>
+    {/* EMPTY TEXT COMPONENT TO CENTER THE "NEW POST TITLE" */}
+    <Text></Text>
   </View>
 );
 
@@ -39,6 +42,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '700',
     fontSize: 20,
-    marginLeft: 27.5,
+    marginRight: 25,
   },
 });
