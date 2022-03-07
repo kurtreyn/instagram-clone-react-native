@@ -57,3 +57,10 @@ Build Login
 - Create new screen: LoginScreen in screens folder
 - Create new component in new subfolder: LoginForm in components/loginScreen
 - Install: email-validator
+
+## Part 8
+
+Build Signup
+
+- Create new screen: SignupScreen in screens folder
+- Create new component in new subfolder: SignupForm in components/signupScreen

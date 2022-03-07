@@ -1,23 +1,23 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import LoginForm from '../components/loginScreen/LoginForm';
+import SignupForm from '../components/signupScreen/SignupForm';
 
 import IG_LOGO from '../assets/instagram-logo.png';
 
 const instagramLogo = Image.resolveAssetSource(IG_LOGO).uri;
 
-const LoginScreen = ({ navigation }) => {
+const SignupScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
         <Image source={{ uri: instagramLogo, height: 100, width: 100 }} />
       </View>
-      <LoginForm navigation={navigation} />
+      <SignupForm navigation={navigation} />
     </View>
   );
 };
 
-export default LoginScreen;
+export default SignupScreen;
 
 const styles = StyleSheet.create({
   container: {
