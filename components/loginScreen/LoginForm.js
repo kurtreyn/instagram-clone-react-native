@@ -17,7 +17,7 @@ const LoginForm = () => {
     email: Yup.string().email().required('An email is required'),
     password: Yup.string()
       .required()
-      .min(8, 'Your password has to have at least 8 characters'),
+      .min(6, 'Your password has to have at least 8 characters'),
   });
 
   return (
@@ -32,7 +32,17 @@ const LoginForm = () => {
       >
         {({ handleChange, handleBlur, handleSubmit, values, isValid }) => (
           <>
-            <View style={styles.inputField}>
+            <View
+              style={[
+                styles.inputField,
+                {
+                  borderColor:
+                    values.email.length < 1 || Validator.validate(values.email)
+                      ? '#ccc'
+                      : 'red',
+                },
+              ]}
+            >
               <TextInput
                 placeholder="Phone number, username or email"
                 placeholderTextColor="#444"
@@ -45,7 +55,17 @@ const LoginForm = () => {
                 value={values.email}
               />
             </View>
-            <View style={styles.inputField}>
+            <View
+              style={[
+                styles.inputField,
+                {
+                  borderColor:
+                    1 > values.password.length || values.password.length > 6
+                      ? '#CCC'
+                      : 'red',
+                },
+              ]}
+            >
               <TextInput
                 placeholder="Password"
                 placeholderTextColor="#444"
