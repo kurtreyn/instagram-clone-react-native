@@ -49,3 +49,11 @@ Build Navigation
 
 - Create new screen: navigation
 - Install: @react-native-navigation/native, @react-navigation/stack, react-native-gesture-handler, valid-url
+
+## Part 7
+
+Build Login
+
+- Create new screen: LoginScreen in screens folder
+- Create new component in new subfolder: LoginForm in components/loginScreen
+- Install: email-validator
