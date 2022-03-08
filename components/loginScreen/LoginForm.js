@@ -11,8 +11,7 @@ import {
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Validator from 'email-validator';
-import { auth } from '../../firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import firebase from '../../firebase';
 
 const LoginForm = ({ navigation }) => {
   const loginFormSchema = Yup.object().shape({
@@ -22,13 +21,10 @@ const LoginForm = ({ navigation }) => {
       .min(6, 'Your password has to have at least 8 characters'),
   });
 
-  function signIn(email, password) {
-    return signInWithEmailAndPassword(auth, email, password);
-  }
-
-  async function onLogin() {
+  const onLogin = async (email, password) => {
     try {
-      await signIn(email, passowrd);
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+      console.log('Firebase Login Successful', email, password);
     } catch (error) {
       Alert.alert(
         'Uh oh!',
@@ -46,16 +42,7 @@ const LoginForm = ({ navigation }) => {
         ]
       );
     }
-  }
-
-  // const onLogin = async (email, password) => {
-  //   try {
-  //     await firebase.auth().signInWithEmailAndPassword(email, password);
-  //     console.log('Firebase Login Successful', email, password);
-  //   } catch (errors) {
-  //     Alert.alert(errors.message);
-  //   }
-  // };
+  };
 
   return (
     <View style={styles.wrapper}>
