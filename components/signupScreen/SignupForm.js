@@ -35,12 +35,14 @@ const SignupForm = ({ navigation }) => {
         .auth()
         .createUserWithEmailAndPassword(email, password);
       console.log('Firebas user created successfully');
-      db.collection('users').add({
-        owner_uid: authUser.user.uid,
-        username: username,
-        email: authUser.user.email,
-        profile_picture: await getRandomProfilePicture(),
-      });
+      db.collection('users')
+        .doc(authUser.user.email)
+        .set({
+          owner_uid: authUser.user.uid,
+          username: username,
+          email: authUser.user.email,
+          profile_picture: await getRandomProfilePicture(),
+        });
     } catch (error) {
       Alert.alert('Uh oh...', error.message);
     }
@@ -51,8 +53,8 @@ const SignupForm = ({ navigation }) => {
       <Formik
         initialValues={{ email: '', username: '', password: '' }}
         onSubmit={(values) => {
-          onSignup(values.email, values.password, values.password);
-          console.log(values.email, values.password);
+          onSignup(values.email, values.username, values.password);
+          console.log(values.email, values.username, values.password);
         }}
         validationSchema={signupFormSchema}
         validateOnMount={true}

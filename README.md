@@ -75,4 +75,14 @@ Setup the backend with Firebase
 
 Segment navigation between signed in and signed out
 
--
+- Add
+
+## Part 11
+
+Add signout
+
+- Add the signout method in Header component
+
+## Part 12
+
+Put posts on HomeScreen
