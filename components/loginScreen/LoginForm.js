@@ -11,8 +11,8 @@ import {
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Validator from 'email-validator';
-// import { auth } from '../../firebase';
-// import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const LoginForm = ({ navigation }) => {
   const loginFormSchema = Yup.object().shape({
@@ -30,9 +30,32 @@ const LoginForm = ({ navigation }) => {
     try {
       await signIn(email, passowrd);
     } catch (error) {
-      Alert.alert(error.message);
+      Alert.alert(
+        'Uh oh!',
+        error.message + '\n\n ... What would you like to do next?',
+        [
+          {
+            text: 'OK',
+            onPress: () => console.log('OK'),
+            style: 'cancel',
+          },
+          {
+            text: 'Sign Up',
+            onPress: () => navigation.push('SignupScreen'),
+          },
+        ]
+      );
     }
   }
+
+  // const onLogin = async (email, password) => {
+  //   try {
+  //     await firebase.auth().signInWithEmailAndPassword(email, password);
+  //     console.log('Firebase Login Successful', email, password);
+  //   } catch (errors) {
+  //     Alert.alert(errors.message);
+  //   }
+  // };
 
   return (
     <View style={styles.wrapper}>

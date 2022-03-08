@@ -6,14 +6,19 @@ import {
   TextInput,
   Pressable,
   TouchableOpacity,
-  Button,
+  Alert,
 } from 'react-native';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Validator from 'email-validator';
 import { NavigationContainer } from '@react-navigation/native';
+import { auth } from '../../firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const SignupForm = ({ navigation }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const signupFormSchema = Yup.object().shape({
     email: Yup.string().email().required('An email is required'),
     username: Yup.string().required().min(2, 'A username is required'),
@@ -22,12 +27,28 @@ const SignupForm = ({ navigation }) => {
       .min(6, 'Your password has to have at least 8 characters'),
   });
 
+  function signupUser(email, password) {
+    return createUserWithEmailAndPassword(auth, email, password);
+  }
+
+  async function onSignup() {
+    setEmail(values.email);
+    setPassword(values.password);
+    try {
+      await signupUser(email, password);
+      console.log('Firebase User created successfully');
+    } catch (error) {
+      Alert.alert(error.message);
+    }
+  }
+
   return (
     <View style={styles.wrapper}>
       <Formik
         initialValues={{ email: '', username: '', password: '' }}
         onSubmit={(values) => {
-          console.log(values);
+          onSignup(email, password);
+          console.log(values.email, values.password);
         }}
         validationSchema={signupFormSchema}
         validateOnMount={true}
