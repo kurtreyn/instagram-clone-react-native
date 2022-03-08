@@ -11,7 +11,7 @@ import {
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Validator from 'email-validator';
-import firebase from '../../firebase';
+import { firebase, db } from '../../firebase';
 
 const LoginForm = ({ navigation }) => {
   const loginFormSchema = Yup.object().shape({

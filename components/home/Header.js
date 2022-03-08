@@ -1,10 +1,40 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
+import { firebase } from '../../firebase';
+
+const handleSignout = async () => {
+  try {
+    await firebase.auth().signOut();
+    console.log('Signed out successfully');
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const Header = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() =>
+          Alert.alert('What would you like to do?', '--', [
+            {
+              text: 'Sign Out',
+              onPress: () => handleSignout(),
+            },
+            {
+              text: 'Cancel',
+              onPress: () => navigation.push('HomeScreen'),
+            },
+          ])
+        }
+      >
         <Image
           style={styles.logo}
           source={require('../../assets/header-logo.png')}

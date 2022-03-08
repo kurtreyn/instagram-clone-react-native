@@ -69,4 +69,10 @@ Build Signup
 
 Setup the backend with Firebase
 
-- expo install firebase
+- expo install firebase@8.2.3
+
+## Part 10
+
+Segment navigation between signed in and signed out
+
+-

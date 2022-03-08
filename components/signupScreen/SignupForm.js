@@ -12,12 +12,9 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Validator from 'email-validator';
 import { NavigationContainer } from '@react-navigation/native';
-import firebase from '../../firebase';
+import { firebase, db } from '../../firebase';
 
 const SignupForm = ({ navigation }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
   const signupFormSchema = Yup.object().shape({
     email: Yup.string().email().required('An email is required'),
     username: Yup.string().required().min(2, 'A username is required'),
@@ -26,10 +23,24 @@ const SignupForm = ({ navigation }) => {
       .min(6, 'Your password has to have at least 8 characters'),
   });
 
-  const onSignup = async (email, password) => {
+  const getRandomProfilePicture = async () => {
+    const response = await fetch('https://randomuser.me/api');
+    const data = await response.json();
+    return data.results[0].picture.large;
+  };
+
+  const onSignup = async (email, username, password) => {
     try {
-      await firebase.auth().createUserWithEmailAndPassword(email, password);
+      const authUser = await firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password);
       console.log('Firebas user created successfully');
+      db.collection('users').add({
+        owner_uid: authUser.user.uid,
+        username: username,
+        email: authUser.user.email,
+        profile_picture: await getRandomProfilePicture(),
+      });
     } catch (error) {
       Alert.alert('Uh oh...', error.message);
     }
@@ -40,7 +51,7 @@ const SignupForm = ({ navigation }) => {
       <Formik
         initialValues={{ email: '', username: '', password: '' }}
         onSubmit={(values) => {
-          onSignup(values.email, values.password);
+          onSignup(values.email, values.password, values.password);
           console.log(values.email, values.password);
         }}
         validationSchema={signupFormSchema}
@@ -86,7 +97,7 @@ const SignupForm = ({ navigation }) => {
                 placeholder="Username"
                 placeholderTextColor="#444"
                 autoCapitalize="none"
-                textContentType="text"
+                textContentType="username"
                 autoFocus={true}
                 onChangeText={handleChange('username')}
                 onBlur={handleBlur('username')}
