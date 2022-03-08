@@ -64,3 +64,9 @@ Build Signup
 
 - Create new screen: SignupScreen in screens folder
 - Create new component in new subfolder: SignupForm in components/signupScreen
+
+## Part 9
+
+Setup the backend with Firebase
+
+- expo install firebase
