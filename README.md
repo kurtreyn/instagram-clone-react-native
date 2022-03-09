@@ -86,3 +86,10 @@ Add signout
 ## Part 12
 
 Put posts on HomeScreen
+
+## Part 13
+
+Add camera feature
+
+- Install: expo install expo-camera
+- Install: expo install expo-image-picker

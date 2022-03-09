@@ -6,6 +6,7 @@ import HomeScreen from '../screens/HomeScreen';
 import NewPostScreen from './NewPostScreen';
 import LoginScreen from './LoginScreen';
 import SignupScreen from './SignupScreen';
+import CameraFeature from '../components/features/CameraFeature';
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,7 @@ export const SignedInStack = () => {
       >
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="NewPostScreen" component={NewPostScreen} />
+        <Stack.Screen name="CameraFeature" component={CameraFeature} />
       </Stack.Navigator>
     </NavigationContainer>
   );
