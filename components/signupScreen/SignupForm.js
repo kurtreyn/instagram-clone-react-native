@@ -11,7 +11,6 @@ import {
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Validator from 'email-validator';
-import { NavigationContainer } from '@react-navigation/native';
 import { firebase, db } from '../../firebase';
 
 const SignupForm = ({ navigation }) => {

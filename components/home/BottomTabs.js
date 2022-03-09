@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Divider } from 'react-native-elements';
 
-const BottomTabs = ({ icons }) => {
+const BottomTabs = ({ icons, posts }) => {
   const [activeTab, setActiveTab] = useState('Home');
+  const [profilePic, setProfilePic] = useState(null);
 
   const Icon = ({ icon }) => (
     <TouchableOpacity onPress={() => setActiveTab(icon.name)}>
@@ -27,6 +28,17 @@ const BottomTabs = ({ icons }) => {
         {icons.map((icon, index) => (
           <Icon key={index} icon={icon} />
         ))}
+        <Image
+          source={{ uri: posts.profile_picture }}
+          style={{ width: 35, height: 35 }}
+        />
+        {/* {posts.map((post, index) => (
+          <Image
+            key={index}
+            source={{ uri: post.profile_picture }}
+            style={{ width: 35, height: 35 }}
+          />
+        ))} */}
       </View>
     </View>
   );
