@@ -4,7 +4,7 @@ import { Image } from 'react-native';
 import blank_profile_pic from '../assets/profile-avatar.png';
 const blankProfilePic = Image.resolveAssetSource(blank_profile_pic).uri;
 
-const userProfilePic = firebase.auth().currentUser.photoURL;
+// const userProfilePic = firebase.auth().currentUser.photoURL;
 
 export const bottomTabIcons = [
   {

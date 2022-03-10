@@ -39,7 +39,6 @@ const SignupForm = ({ navigation }) => {
         username: username,
         email: authUser.user.email,
         profile_picture: authUser.user.profile_picture,
-        photoURL: authUser.user.photoURL,
       });
     } catch (error) {
       Alert.alert('Uh oh...', error.message);
