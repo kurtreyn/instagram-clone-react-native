@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { firebase, db } from '../firebase';
 import Header from '../components/home/Header';
@@ -9,7 +9,7 @@ import BottomTabs from '../components/home/BottomTabs';
 import { POSTS } from '../data/posts';
 import { bottomTabIcons } from '../data/bottomTabIcons';
 
-const HomeScreen = ({ navigation, icons }) => {
+const HomeScreen = ({ navigation }) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {

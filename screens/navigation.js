@@ -16,7 +16,8 @@ const screenOptions = {
   headerShown: false,
 };
 
-export const SignedInStack = () => {
+export const SignedInStack = ({ currentUser, photoURL, setPhotoURL }) => {
+  // console.log(currentUser.email);
   return (
     <NavigationContainer>
       <Stack.Navigator

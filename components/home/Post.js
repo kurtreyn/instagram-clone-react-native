@@ -79,6 +79,7 @@ const Post = ({ post }) => {
 };
 
 const PostHeader = ({ post }) => {
+  console.log(post.profile_picture);
   return (
     <View style={styles.postHeader}>
       <View style={styles.userContainer}>

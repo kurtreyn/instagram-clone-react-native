@@ -1,3 +1,11 @@
+import React, { useState, useEffect } from 'react';
+import { firebase, db } from '../firebase';
+import { Image } from 'react-native';
+import blank_profile_pic from '../assets/profile-avatar.png';
+const blankProfilePic = Image.resolveAssetSource(blank_profile_pic).uri;
+
+const userProfilePic = firebase.auth().currentUser.photoURL;
+
 export const bottomTabIcons = [
   {
     name: 'Home',
@@ -26,7 +34,6 @@ export const bottomTabIcons = [
     name: 'Profile',
     active:
       'https://yt3.ggpht.com/ytc/AKedOLRY9Un_v7Xr9dG1F5NEkqGsGSqwqRz0O3w3r1mI=s900-c-k-c0x00ffffff-no-rj',
-    inactive:
-      'https://yt3.ggpht.com/ytc/AKedOLRY9Un_v7Xr9dG1F5NEkqGsGSqwqRz0O3w3r1mI=s900-c-k-c0x00ffffff-no-rj',
+    inactive: blankProfilePic,
   },
 ];

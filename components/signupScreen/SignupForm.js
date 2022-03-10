@@ -22,11 +22,11 @@ const SignupForm = ({ navigation }) => {
       .min(6, 'Your password has to have at least 8 characters'),
   });
 
-  const getRandomProfilePicture = async () => {
-    const response = await fetch('https://randomuser.me/api');
-    const data = await response.json();
-    return data.results[0].picture.large;
-  };
+  // const getRandomProfilePicture = async () => {
+  //   const response = await fetch('https://randomuser.me/api');
+  //   const data = await response.json();
+  //   return data.results[0].picture.large;
+  // };
 
   const onSignup = async (email, username, password) => {
     try {
@@ -34,14 +34,13 @@ const SignupForm = ({ navigation }) => {
         .auth()
         .createUserWithEmailAndPassword(email, password);
       console.log('Firebas user created successfully');
-      db.collection('users')
-        .doc(authUser.user.email)
-        .set({
-          owner_uid: authUser.user.uid,
-          username: username,
-          email: authUser.user.email,
-          profile_picture: await getRandomProfilePicture(),
-        });
+      db.collection('users').doc(authUser.user.email).set({
+        owner_uid: authUser.user.uid,
+        username: username,
+        email: authUser.user.email,
+        profile_picture: authUser.user.profile_picture,
+        photoURL: authUser.user.photoURL,
+      });
     } catch (error) {
       Alert.alert('Uh oh...', error.message);
     }
