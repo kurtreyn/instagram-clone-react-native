@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet, Text, View } from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
@@ -17,7 +17,6 @@ const screenOptions = {
 };
 
 export const SignedInStack = ({ currentUser, photoURL, setPhotoURL }) => {
-  // console.log(currentUser.email);
   return (
     <NavigationContainer>
       <Stack.Navigator

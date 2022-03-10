@@ -12,13 +12,15 @@ import { Camera } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
 import { Divider } from 'react-native-elements';
 import BottomTabs from '../home/BottomTabs';
+import CameraGallery from './CameraGallery';
 
 import camera_icon from '../../assets/camera-icon.png';
 import rotate_icon from '../../assets/rotate-icon.png';
+import { NavigationContainer } from '@react-navigation/native';
 const cameraIcon = Image.resolveAssetSource(camera_icon).uri;
 const rotateIcon = Image.resolveAssetSource(rotate_icon).uri;
 
-export default function CameraComponent() {
+export default function CameraComponent({ navigation }) {
   const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
@@ -44,24 +46,24 @@ export default function CameraComponent() {
       const data = await camera.takePictureAsync(null);
       setImage(data.uri);
       //   console.log(data.uri);
+      () => navigation.push('CameraGallery');
     }
   };
 
-  const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 1,
-    });
+  // const pickImage = async () => {
+  //   let result = await ImagePicker.launchImageLibraryAsync({
+  //     mediaTypes: ImagePicker.MediaTypeOptions.Images,
+  //     allowsEditing: true,
+  //     aspect: [1, 1],
+  //     quality: 1,
+  //   });
 
-    console.log(result);
+  //   console.log(result);
 
-    if (!result.cancelled) {
-      setImage(result.uri);
-    }
-  };
+  //   if (!result.cancelled) {
+  //     setImage(result.uri);
+  //   }
+  // };
 
   if (hasCameraPermission === null || hasGalleryPermission === false) {
     return <View />;
@@ -70,38 +72,46 @@ export default function CameraComponent() {
     return <Text>No access to camera</Text>;
   }
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={styles.cameraContainer}>
-        <Camera
-          ref={(ref) => setCamera(ref)}
-          style={styles.fixedRatioTag}
-          type={type}
-          ratio={'1:1'}
-        />
-      </View>
-      <TouchableOpacity
-        style={styles.rotateIconContainer}
-        onPress={() => {
-          setType(
-            type === Camera.Constants.Type.back
-              ? Camera.Constants.Type.front
-              : Camera.Constants.Type.back
-          );
-        }}
-      >
-        <Image source={{ uri: rotateIcon }} style={{ width: 20, height: 20 }} />
-      </TouchableOpacity>
+    <>
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={styles.cameraContainer}>
+          <Camera
+            ref={(ref) => setCamera(ref)}
+            style={styles.fixedRatioTag}
+            type={type}
+            ratio={'1:1'}
+          />
+        </View>
+        <TouchableOpacity
+          style={styles.rotateIconContainer}
+          onPress={() => {
+            setType(
+              type === Camera.Constants.Type.back
+                ? Camera.Constants.Type.front
+                : Camera.Constants.Type.back
+            );
+          }}
+        >
+          <Image
+            source={{ uri: rotateIcon }}
+            style={{ width: 20, height: 20 }}
+          />
+        </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.cameraIconContainer}
-        onPress={() => takePicture()}
-      >
-        <Image source={{ uri: cameraIcon }} style={{ width: 60, height: 60 }} />
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.cameraIconContainer}
+          onPress={() => takePicture()}
+        >
+          <Image
+            source={{ uri: cameraIcon }}
+            style={{ width: 60, height: 60 }}
+          />
+        </TouchableOpacity>
 
-      <Button title="Select image from gallery" onPress={() => pickImage()} />
-      {image && <Image source={{ uri: image }} style={{ flex: 1 }} />}
-    </SafeAreaView>
+        {/* <Button title="Select image from gallery" onPress={() => pickImage()} /> */}
+        {/* {image && <Image source={{ uri: image }} style={{ flex: 1 }} />} */}
+      </SafeAreaView>
+    </>
   );
 }
 

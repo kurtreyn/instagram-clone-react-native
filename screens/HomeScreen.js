@@ -11,12 +11,25 @@ import { bottomTabIcons } from '../data/bottomTabIcons';
 
 const HomeScreen = ({ navigation }) => {
   const [posts, setPosts] = useState([]);
+  const [userPic, setUserPic] = useState(null);
+
+  const userHandler = (post) => {
+    post.map((post) => {
+      setUserPic(post.profile_picture);
+    });
+  };
+
+  // useEffect(() => {
+  //   userHandler();
+  // }, []);
 
   useEffect(() => {
     db.collectionGroup('posts').onSnapshot((snapshot) => {
       setPosts(snapshot.docs.map((post) => ({ id: post.id, ...post.data() })));
     });
   }, []);
+
+  console.log(`Active user is ${userPic}`);
 
   return (
     <SafeAreaView style={styles.container}>

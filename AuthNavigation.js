@@ -10,6 +10,7 @@ import { SignedInStack, SignedOutStack } from './screens/navigation';
 const AuthNavigation = () => {
   const [currentUser, setCurrentUser] = useState(null);
   // const [photoURL, setPhotoURL] = useState(blankProfilePic);
+  console.log(currentUser);
 
   const userHandler = (user) =>
     user ? setCurrentUser(user) : setCurrentUser(null);

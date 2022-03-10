@@ -42,7 +42,20 @@ const Header = ({ navigation }) => {
       </TouchableOpacity>
 
       <View style={styles.iconsContainer}>
-        <TouchableOpacity onPress={() => navigation.push('CameraComponent')}>
+        <TouchableOpacity
+          onPress={() =>
+            Alert.alert('Options', '--', [
+              {
+                text: 'Take A Picture',
+                onPress: () => navigation.push('CameraComponent'),
+              },
+              {
+                text: 'Upload Picture from Gallery',
+                onPress: () => navigation.push('CameraGallery'),
+              },
+            ])
+          }
+        >
           <Image
             source={{
               uri: 'https://img.icons8.com/fluency-systems-regular/60/ffffff/plus-2-math.png',
