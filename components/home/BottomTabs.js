@@ -28,17 +28,6 @@ const BottomTabs = ({ icons, posts }) => {
         {icons.map((icon, index) => (
           <Icon key={index} icon={icon} />
         ))}
-        <Image
-          source={{ uri: posts.profile_picture }}
-          style={{ width: 35, height: 35 }}
-        />
-        {/* {posts.map((post, index) => (
-          <Image
-            key={index}
-            source={{ uri: post.profile_picture }}
-            style={{ width: 35, height: 35 }}
-          />
-        ))} */}
       </View>
     </View>
   );

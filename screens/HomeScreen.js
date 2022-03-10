@@ -9,7 +9,7 @@ import BottomTabs from '../components/home/BottomTabs';
 import { POSTS } from '../data/posts';
 import { bottomTabIcons } from '../data/bottomTabIcons';
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ navigation, icons }) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {

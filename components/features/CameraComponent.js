@@ -10,8 +10,15 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Camera } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
+import { Divider } from 'react-native-elements';
+import BottomTabs from '../home/BottomTabs';
 
-export default function CameraFeature() {
+import camera_icon from '../../assets/camera-icon.png';
+import rotate_icon from '../../assets/rotate-icon.png';
+const cameraIcon = Image.resolveAssetSource(camera_icon).uri;
+const rotateIcon = Image.resolveAssetSource(rotate_icon).uri;
+
+export default function CameraComponent() {
   const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
@@ -72,8 +79,8 @@ export default function CameraFeature() {
           ratio={'1:1'}
         />
       </View>
-      <Button
-        title="Flip Image"
+      <TouchableOpacity
+        style={styles.rotateIconContainer}
         onPress={() => {
           setType(
             type === Camera.Constants.Type.back
@@ -81,10 +88,20 @@ export default function CameraFeature() {
               : Camera.Constants.Type.back
           );
         }}
-      ></Button>
-      <Button title="Take Picture" onPress={() => takePicture()} />
+      >
+        <Image source={{ uri: rotateIcon }} style={{ width: 20, height: 20 }} />
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.cameraIconContainer}
+        onPress={() => takePicture()}
+      >
+        <Image source={{ uri: cameraIcon }} style={{ width: 60, height: 60 }} />
+      </TouchableOpacity>
+
       <Button title="Select image from gallery" onPress={() => pickImage()} />
       {image && <Image source={{ uri: image }} style={{ flex: 1 }} />}
+      <BottomTabs />
     </SafeAreaView>
   );
 }
@@ -97,5 +114,17 @@ const styles = StyleSheet.create({
   fixedRatioTag: {
     flex: 1,
     aspectRatio: 1,
+  },
+  cameraIconContainer: {
+    backgroundColor: '#555',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    width: '18%',
+    borderRadius: 50,
+  },
+  rotateIconContainer: {
+    alignItems: 'flex-end',
+    marginRight: 20,
   },
 });
