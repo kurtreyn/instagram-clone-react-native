@@ -93,3 +93,4 @@ Add camera feature
 
 - Install: expo install expo-camera
 - Install: expo install expo-image-picker
+- Create new subfolder in components folder called features and create new files called CameraComponent and CameraGallery

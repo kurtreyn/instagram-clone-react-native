@@ -101,7 +101,6 @@ export default function CameraComponent() {
 
       <Button title="Select image from gallery" onPress={() => pickImage()} />
       {image && <Image source={{ uri: image }} style={{ flex: 1 }} />}
-      <BottomTabs />
     </SafeAreaView>
   );
 }
